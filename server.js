@@ -4,8 +4,7 @@ const vm = require('vm');
 const util = require('util');
 const fetch = require("node-fetch");
 
-const url = "https://reqres.in/api/users?per_page=20"
-
+// const url = "https://reqres.in/api/users?per_page=20"
 
 const context = {
     testBool: false,

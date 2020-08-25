@@ -9,8 +9,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello client ...")
-
+	fmt.Println("Starting client ...")
 	opts := grpc.WithInsecure()
 	cc, err := grpc.Dial("127.0.0.1:50051", opts)
 	if err != nil {
@@ -20,15 +19,15 @@ func main() {
 
 	client := rpc.NewCodeServiceClient(cc)
 	request := &rpc.JSReq{Code: `
-fetch('https://reqres.in/api/users?per_page=20')
-.then(response => response.json())
-.then(data => {
-    output = data
-  console.log(data)
-})
-.catch(error => {
-console.error(error)
-})
+        fetch('https://reqres.in/api/users?per_page=20')
+        .then(response => response.json())
+        .then(data => {
+            output = data
+          console.log(data)
+        })
+        .catch(error => {
+        console.error(error)
+        })
 	`}
 
 	resp, err := client.Executejs(context.Background(), request)
