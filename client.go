@@ -19,7 +19,17 @@ func main() {
 	defer cc.Close()
 
 	client := rpc.NewCodeServiceClient(cc)
-	request := &rpc.JSReq{Code: ""}
+	request := &rpc.JSReq{Code: `
+fetch('https://reqres.in/api/users?per_page=20')
+.then(response => response.json())
+.then(data => {
+    output = data
+  console.log(data)
+})
+.catch(error => {
+console.error(error)
+})
+	`}
 
 	resp, err := client.Executejs(context.Background(), request)
 	if err != nil {
