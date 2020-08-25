@@ -1,0 +1,12 @@
+syntax = "proto3";
+message JSReq {
+    string code = 1;
+}
+
+message JSResp {
+	string resp = 1;
+}
+
+service CodeService {
+    rpc Executejs (JSReq) returns (JSResp) {}
+}
